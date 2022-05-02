@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import LoginForm from "../../Container/LoginForm/LoginForm";
 import SignUpForm from "../../Container/SignUpForm/SignUpForm";
 import Card from "../../HOC/Card/Card";
@@ -19,11 +19,14 @@ export default function Auth() {
     <View style={styles.container}>
       <Card title='Bienvenu!' content='Veuillez vous authentifier.'>
         {isLogin ? <LoginForm /> : <SignUpForm />}
-        <Text onPress={toggleIsLogin}>
-          {isLogin
-            ? "Pas encore membre? Inscrivez-vous!"
-            : "Vous etes deja membre? Connectez-vous!"}
-        </Text>
+
+        <TouchableOpacity onPress={toggleIsLogin}>
+          <Text>
+            {isLogin
+              ? "Pas encore membre? Inscrivez-vous!"
+              : "Vous etes déja membre? Connectez-vous!"}
+          </Text>
+        </TouchableOpacity>
       </Card>
     </View>
   );
