@@ -17,11 +17,11 @@ export default function Auth() {
 
   return (
     <View style={styles.container}>
-      <Card title='Bienvenu!' content='Veuillez vous authentifier.'>
+      <Card title='Bienvenue!' content='Veuillez vous authentifier.'>
         {isLogin ? <LoginForm /> : <SignUpForm />}
 
         <TouchableOpacity onPress={toggleIsLogin}>
-          <Text>
+          <Text style={styles.lien}>
             {isLogin
               ? "Pas encore membre? Inscrivez-vous!"
               : "Vous etes déja membre? Connectez-vous!"}
@@ -35,5 +35,10 @@ export default function Auth() {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
+  },
+  lien: {
+    color: "royalblue",
+    marginVertical: 10,
+    textDecorationLine: "underline",
   },
 });

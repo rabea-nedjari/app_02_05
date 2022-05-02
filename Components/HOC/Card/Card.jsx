@@ -26,12 +26,12 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "whitesmoke",
-    fontSize: 20,
+    fontSize: 40,
     fontWeight: "bold",
   },
   content: {
     color: "whitesmoke",
-    fontSize: 16,
+    fontSize: 25,
     marginBottom: 20,
   },
   childrenContainer: {
