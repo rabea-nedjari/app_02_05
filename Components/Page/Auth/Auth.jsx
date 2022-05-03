@@ -42,3 +42,14 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline",
   },
 });
+
+//Implemter le formulaire d'inscription avec 4 inputs et un bouton:
+
+// email: Possede un @
+// username: Minimum 3 caractères, et maximum 12 caractères
+// password: Minimum 6 caractères
+// confirmPassword: identique a password (confirmPassword == password)
+
+//Bouton execute la fonction signup:
+// teste les entrées de l'utilisateur.
+// affiche les erreurs.
