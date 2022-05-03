@@ -17,7 +17,12 @@ export default function Auth() {
 
   return (
     <View style={styles.container}>
-      <Card title='Bienvenue!' content='Veuillez vous authentifier.'>
+      <Card
+        title='Bienvenue!'
+        content={
+          isLogin ? "Veuillez vous connecter." : "Veuillez vous inscrire."
+        }
+      >
         {isLogin ? <LoginForm /> : <SignUpForm />}
 
         <TouchableOpacity onPress={toggleIsLogin}>

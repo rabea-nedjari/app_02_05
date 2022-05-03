@@ -3,15 +3,22 @@ import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Auth from "./Components/Page/Auth/Auth";
 import Profil from "./Components/Page/Profil/Profil";
+import { UserContext } from "./Contexts/UserContext";
 
 export default function App() {
-  const [user, setUser] = useState(null);
+  const fakeUser = {
+    email: "sam.djm93@gmail.com",
+    username: "Samy Djemai",
+  };
+  const [user, setUser] = useState(fakeUser);
 
   return (
-    <View style={styles.container}>
-      {user ? <Profil /> : <Auth />}
-      <StatusBar style='auto' />
-    </View>
+    <UserContext.Provider value={{ user, setUser }}>
+      <View style={styles.container}>
+        {user ? <Profil /> : <Auth />}
+        <StatusBar style='auto' />
+      </View>
+    </UserContext.Provider>
   );
 }
 

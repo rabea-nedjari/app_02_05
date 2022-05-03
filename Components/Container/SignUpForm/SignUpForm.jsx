@@ -1,11 +1,15 @@
 //import liraries
-import React, { Component, useState } from "react";
+import React, { Component, useContext, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Button from "../../UI/Button/Button";
 import InputWithError from "../../UI/InputWithError/InputWithError";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { UserContext } from "../../../Contexts/UserContext";
 
 // create a component
 const SignUpForm = () => {
+  const userContext = useContext(UserContext);
+
   //1- Créer les variables d'états  pour mémoriser les entrées de l'utilisateur:
   const [emailInput, setEmailInput] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -49,7 +53,7 @@ const SignUpForm = () => {
       passwordInput.length >= 6 &&
       confirmPasswordInput === passwordInput
     ) {
-      alert("Inscription resussie!");
+      userContext.setUser({ email: emailInput, username: usernameInput });
     } else {
       setEmailError(!emailInput.includes("@") ? "Email invalide!" : "");
 
@@ -107,7 +111,16 @@ const SignUpForm = () => {
         isPassword
       />
       <Button action={signup}>
-        <Text>Valider</Text>
+        <FontAwesome5 name='sign-in-alt' size={20} color='whitesmoke' />
+        <Text
+          style={{
+            color: "whitesmoke",
+            marginHorizontal: 5,
+            fontSize: 20,
+          }}
+        >
+          Valider
+        </Text>
       </Button>
     </View>
   );
