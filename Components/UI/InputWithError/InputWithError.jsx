@@ -1,8 +1,8 @@
 //import liraries
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 import { styleVariables } from "../../../variables/StyleVariables";
-
+import { FontAwesome } from "@expo/vector-icons";
 // create a component
 const InputWithError = ({
   holder,
@@ -12,16 +12,32 @@ const InputWithError = ({
   type,
   isPassword,
 }) => {
+  const [isPasswordShown, setIsPasswordShown] = useState(false);
+
   return (
     <>
-      <TextInput
-        style={styles.input}
-        placeholder={holder}
-        value={valeur}
-        onChangeText={action}
-        type={type}
-        secureTextEntry={isPassword}
-      />
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder={holder}
+          value={valeur}
+          onChangeText={action}
+          type={type}
+          secureTextEntry={isPassword && !isPasswordShown}
+        />
+
+        {isPassword ? (
+          <FontAwesome
+            onPress={() => {
+              setIsPasswordShown(!isPasswordShown);
+            }}
+            name='eye'
+            size={24}
+            color='black'
+          />
+        ) : null}
+      </View>
+
       <Text style={styles.error}>{errorMessage}</Text>
     </>
   );
@@ -30,14 +46,19 @@ const InputWithError = ({
 // define your styles
 const styles = StyleSheet.create({
   input: {
-    borderBottomWidth: 2,
-    borderBottomColor: styleVariables.primaryColor,
-    backgroundColor: "rgb(225,225,225)",
     padding: 5,
   },
   error: {
     color: "red",
     margin: 5,
+  },
+  inputContainer: {
+    display: "flex",
+    flexDirection: "row",
+    borderBottomWidth: 2,
+    borderBottomColor: styleVariables.primaryColor,
+    backgroundColor: "rgb(225,225,225)",
+    padding: 5,
   },
 });
 
