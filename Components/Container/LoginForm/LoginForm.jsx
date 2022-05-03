@@ -8,6 +8,9 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Button from "../../UI/Button/Button";
+import { AntDesign } from "@expo/vector-icons";
+import { styleVariables } from "../../../variables/StyleVariables";
+import InputWithError from "../../UI/InputWithError/InputWithError";
 
 // create a component
 const LoginForm = () => {
@@ -46,23 +49,25 @@ const LoginForm = () => {
   //4- Mettre en place les composants, et les lier avec les fonctions et variables:
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder='Email'
-        value={emailInput}
-        onChangeText={handleEmailInput}
+      <InputWithError
+        holder='Email'
+        valeur={emailInput}
+        action={handleEmailInput}
+        errorMessage={emailError}
+        type='email-address'
       />
-      <Text style={styles.error}> {emailError} </Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder='Mot de passe'
-        value={passwordInput}
-        onChangeText={handlePasswordInput}
+      <InputWithError
+        holder='Mot de passe'
+        valeur={passwordInput}
+        action={handlePasswordInput}
+        errorMessage={passwordError}
+        type='default'
+        isPassword
       />
-      <Text style={styles.error}>{passwordError}</Text>
 
       <Button action={login}>
+        <AntDesign name='login' size={20} color='whitesmoke' />
         <Text style={styles.labelButton}>Se connecter</Text>
       </Button>
     </View>
@@ -77,20 +82,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     // backgroundColor: "#2c3e50",
   },
-  input: {
-    borderBottomWidth: 2,
-    borderBottomColor: "#2c3e50",
-    backgroundColor: "rgb(225,225,225)",
-    padding: 5,
-  },
-  error: {
-    color: "red",
-    margin: 5,
-  },
-
   labelButton: {
     color: "whitesmoke",
     fontSize: 18,
+    marginHorizontal: 5,
   },
 });
 

@@ -1,6 +1,7 @@
 //import liraries
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { styleVariables } from "../../../variables/StyleVariables";
 
 // HOC: High Order Component / Composant d'ordre superieure
 
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#2c3e50",
+    backgroundColor: styleVariables.primaryColor,
     marginHorizontal: 20,
     borderRadius: 5,
     paddingTop: 20,

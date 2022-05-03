@@ -1,11 +1,24 @@
 //import liraries
 import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { styleVariables } from "../../../variables/StyleVariables";
 
 // create a component
-const Button = ({ action, children }) => {
+const Button = ({ action, children, success, danger }) => {
   return (
-    <TouchableOpacity style={styles.button} onPress={action}>
+    <TouchableOpacity
+      style={[
+        styles.button,
+        {
+          backgroundColor: success
+            ? styleVariables.success
+            : danger
+            ? styleVariables.danger
+            : styleVariables.primaryColor,
+        },
+      ]}
+      onPress={action}
+    >
       {children}
     </TouchableOpacity>
   );
@@ -14,9 +27,10 @@ const Button = ({ action, children }) => {
 // define your styles
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#2c3e50",
     padding: 10,
     borderRadius: 5,
+    display: "flex",
+    flexDirection: "row",
   },
 });
 
