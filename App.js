@@ -4,7 +4,8 @@ import { StyleSheet, Text, View } from "react-native";
 import Auth from "./Components/Page/Auth/Auth";
 import Profil from "./Components/Page/Profil/Profil";
 import { UserContext } from "./Contexts/UserContext";
-
+import { NavigationContainer } from "@react-navigation/native";
+import ProfilStack from "./Components/Stack/ProfilStack";
 export default function App() {
   const fakeUser = {
     email: "sam.djm93@gmail.com",
@@ -15,8 +16,10 @@ export default function App() {
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <View style={styles.container}>
-        {user ? <Profil /> : <Auth />}
-        <StatusBar style='auto' />
+        <NavigationContainer>
+          {user ? <ProfilStack /> : <Auth />}
+          <StatusBar style='auto' />
+        </NavigationContainer>
       </View>
     </UserContext.Provider>
   );
@@ -26,9 +29,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "rgb(250, 250, 250)",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
   },
 });
 

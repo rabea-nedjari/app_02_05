@@ -15,12 +15,14 @@ import defaultAvatar from "../../../assets/default_avatar.png";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 
-const Profil = () => {
+const Profil = (props) => {
   const { user, setUser } = useContext(UserContext);
 
   const size = useWindowDimensions();
 
-  console.log(ImagePicker);
+  function goCamera() {
+    props.navigation.push("camera");
+  }
 
   const pickImage = async () => {
     let pickedImage = await ImagePicker.launchImageLibraryAsync({
@@ -39,13 +41,14 @@ const Profil = () => {
 
   return (
     <View>
-      <View>
+      <View style={{ alignItems: "center" }}>
         <Image
           style={{
             width: size.width,
             height: size.width,
             maxWidth: 300,
             maxHeight: 300,
+            borderRadius: 150,
           }}
           source={user.avatar ? user.avatar : defaultAvatar}
         />
@@ -58,7 +61,7 @@ const Profil = () => {
               color={styleVariables.primaryColor}
             />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={goCamera}>
             <MaterialIcons
               name='photo-camera'
               size={40}
@@ -99,6 +102,8 @@ const styles = StyleSheet.create({
     borderTopWidth: 2,
     borderColor: styleVariables.primaryColor,
     padding: 20,
+    maxWidth: 300,
+    alignSelf: "center",
   },
   infoContainer: {
     borderBottomWidth: 2,
@@ -116,6 +121,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     paddingVertical: 10,
+    width: "100%",
+    maxWidth: 300,
   },
 });
 
